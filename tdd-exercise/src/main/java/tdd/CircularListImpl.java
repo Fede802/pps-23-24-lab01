@@ -38,17 +38,13 @@ public class CircularListImpl implements CircularList {
     public Optional<Integer> next() {
         if (this.isEmpty()) return Optional.empty();
         this.currentItemIndex = hasNext() ? this.currentItemIndex+1 : 0;
-        Optional<Integer> nextItem = Optional.of(this.circularList.get(this.currentItemIndex));
-        return nextItem;
+        return Optional.of(this.circularList.get(this.currentItemIndex));
     }
 
     @Override
     public Optional<Integer> previous() {
         if (this.isEmpty()) return Optional.empty();
-        System.out.println(this.currentItemIndex);
-        System.out.println(hasPrevious());
         this.currentItemIndex = hasPrevious() ? this.currentItemIndex-1 : this.circularList.size()-1;
-        System.out.println(this.currentItemIndex);
         return Optional.of(this.circularList.get(this.currentItemIndex));
     }
 

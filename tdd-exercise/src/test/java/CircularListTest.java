@@ -80,12 +80,10 @@ public class CircularListTest {
 
     @Test
     void reset(){
-        int itemsAdded = addItems();
-        for (int i = 0; i < itemsAdded; i++) {
-            circularList.next();
-        }
+        addItems();
+        circularList.next();
         circularList.reset();
-        assertEquals(LAST_ITEM,circularList.previous().orElse(GENERIC_ITEM));
+        assertEquals(FIRST_ITEM,circularList.next().orElse(GENERIC_ITEM));
     }
 
 }
