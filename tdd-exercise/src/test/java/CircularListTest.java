@@ -78,4 +78,14 @@ public class CircularListTest {
         assertFalse(circularList.previous().isPresent());
     }
 
+    @Test
+    void reset(){
+        int itemsAdded = addItems();
+        for (int i = 0; i < itemsAdded; i++) {
+            circularList.next();
+        }
+        circularList.reset();
+        assertEquals(LAST_ITEM,circularList.previous().orElse(GENERIC_ITEM));
+    }
+
 }
