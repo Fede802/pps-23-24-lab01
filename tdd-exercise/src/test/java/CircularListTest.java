@@ -7,8 +7,7 @@ import tdd.CircularListImpl;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * The test suite for testing the CircularList implementation
@@ -16,15 +15,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CircularListTest {
 
     private final static int FIRST_ITEM = 0;
-
     private final static int GENERIC_ITEM = 1;
     private final static int LAST_ITEM = 2;
+
     private CircularList circularList;
 
-    private void addItems(){
+    private int addItems(){
+        int itemsAdded = 3;
         circularList.add(FIRST_ITEM);
         circularList.add(GENERIC_ITEM);
         circularList.add(LAST_ITEM);
+        return itemsAdded;
     }
     @BeforeEach
     void beforeEach(){
@@ -43,7 +44,9 @@ public class CircularListTest {
 
     @Test
     void addMultipleItems(){
-        addItems();
-        assertFalse(circularList.isEmpty());
+        int itemsAdded = addItems();
+        assertEquals(itemsAdded,circularList.size());
     }
+
+
 }
