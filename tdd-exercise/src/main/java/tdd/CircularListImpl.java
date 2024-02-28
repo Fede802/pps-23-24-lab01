@@ -15,6 +15,10 @@ public class CircularListImpl implements CircularList {
         return this.currentItemIndex+1 < this.circularList.size();
     }
 
+    private boolean hasPrevious(){
+        return this.currentItemIndex-1 >= 0;
+    }
+
     @Override
     public void add(int element) {
         this.circularList.add(element);
@@ -40,7 +44,8 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> previous() {
-        return Optional.empty();
+        this.currentItemIndex = hasPrevious() ? this.currentItemIndex-1 : this.circularList.size()-1;
+        return Optional.of(this.circularList.get(this.currentItemIndex));
     }
 
     @Override
