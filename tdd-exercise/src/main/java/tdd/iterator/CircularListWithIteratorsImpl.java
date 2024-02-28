@@ -26,7 +26,7 @@ public class CircularListWithIteratorsImpl implements CircularListWithIterators 
 
     @Override
     public Iterator<Integer> forwardIterator() {
-        return null;
+        return circularList.iterator();
     }
 
     @Override

@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 import tdd.iterator.CircularListWithIterators;
 import tdd.iterator.CircularListWithIteratorsImpl;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -43,5 +45,16 @@ public class CircularListWithIteratorsTest {
     void addMultipleItems(){
         int itemsAdded = addItems();
         assertEquals(itemsAdded,circularList.size());
+    }
+
+    @Test
+    void testForwardIterator(){
+        int itemsAdded = addItems();
+
+        Iterator<Integer> iterator = this.circularList.forwardIterator();
+        for (int i = 0; i < itemsAdded-1; i++) {
+            iterator.next();
+        }
+        assertEquals(LAST_ITEM,iterator.next());
     }
 }
