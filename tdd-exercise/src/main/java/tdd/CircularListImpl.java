@@ -5,19 +5,22 @@ import tdd.CircularList;
 import java.util.Optional;
 
 public class CircularListImpl implements CircularList {
+
+    private int size;
+
     @Override
     public void add(int element) {
-
+        size++;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return true;
+        return size() == 0;
     }
 
     @Override
