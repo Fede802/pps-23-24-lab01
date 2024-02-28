@@ -73,5 +73,9 @@ public class CircularListTest {
         assertEquals(LAST_ITEM,circularList.previous().orElse(GENERIC_ITEM));
     }
 
+    @Test
+    void backwardIterationWithEmptyList(){
+        assertFalse(circularList.previous().isPresent());
+    }
 
 }
