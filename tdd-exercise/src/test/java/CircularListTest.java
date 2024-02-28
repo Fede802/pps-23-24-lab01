@@ -51,6 +51,14 @@ public class CircularListTest {
     }
 
     @Test
+    void forwardIteration(){
+        int itemsAdded = addItems();
+        for (int i = 0; i < itemsAdded-1; i++) {
+            circularList.next();
+        }
+        assertEquals(LAST_ITEM,circularList.next().orElse(GENERIC_ITEM));
+    }
+    @Test
     void forwardCyclicIteration(){
         int itemsAdded = addItems();
         for (int i = 0; i < itemsAdded; i++) {
@@ -64,6 +72,14 @@ public class CircularListTest {
         assertFalse(circularList.next().isPresent());
     }
 
+    @Test
+    void backwardIteration(){
+        int itemsAdded = addItems();
+        for (int i = 0; i < itemsAdded-1; i++) {
+            circularList.previous();
+        }
+        assertEquals(FIRST_ITEM,circularList.previous().orElse(GENERIC_ITEM));
+    }
     @Test
     void backwardCyclicIteration(){
         int itemsAdded = addItems();
