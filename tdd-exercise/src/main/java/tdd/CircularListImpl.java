@@ -2,14 +2,22 @@ package tdd;
 
 import tdd.CircularList;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class CircularListImpl implements CircularList {
 
+    private final List<Integer> circularList = new ArrayList<>();
+    private int currentItemIndex = 0;
     private int size;
+    private boolean hasNext(){
+        return this.currentItemIndex+1 < this.circularList.size();
+    }
 
     @Override
     public void add(int element) {
+        circularList.add(element);
         size++;
     }
 
@@ -25,7 +33,9 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> next() {
-        return Optional.empty();
+        Optional<Integer> nextItem = Optional.of(this.circularList.get(this.currentItemIndex));
+        this.currentItemIndex = hasNext() ? this.currentItemIndex+1 : 0;
+        return nextItem;
     }
 
     @Override

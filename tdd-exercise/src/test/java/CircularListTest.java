@@ -27,6 +27,7 @@ public class CircularListTest {
         circularList.add(LAST_ITEM);
         return itemsAdded;
     }
+
     @BeforeEach
     void beforeEach(){
         circularList = new CircularListImpl();
@@ -46,6 +47,15 @@ public class CircularListTest {
     void addMultipleItems(){
         int itemsAdded = addItems();
         assertEquals(itemsAdded,circularList.size());
+    }
+
+    @Test
+    void forwardCyclicIteration(){
+        int itemsAdded = addItems();
+        for (int i = 0; i < itemsAdded; i++) {
+            circularList.next();
+        }
+        assertEquals(FIRST_ITEM,circularList.next().orElse(GENERIC_ITEM));
     }
 
 
