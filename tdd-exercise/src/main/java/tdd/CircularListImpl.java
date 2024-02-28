@@ -10,25 +10,24 @@ public class CircularListImpl implements CircularList {
 
     private final List<Integer> circularList = new ArrayList<>();
     private int currentItemIndex = 0;
-    private int size;
+
     private boolean hasNext(){
         return this.currentItemIndex+1 < this.circularList.size();
     }
 
     @Override
     public void add(int element) {
-        circularList.add(element);
-        size++;
+        this.circularList.add(element);
     }
 
     @Override
     public int size() {
-        return size;
+        return this.circularList.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return size() == 0;
+        return this.size() == 0;
     }
 
     @Override
