@@ -34,7 +34,7 @@ public class CircularListWithIteratorsImpl implements CircularListWithIterators 
         return new BackwardIterator();
     }
 
-    public class ForwardIterator implements Iterator<Integer>{
+    private class ForwardIterator implements Iterator<Integer>{
         private int index = -1;
         @Override
         public boolean hasNext() {
@@ -48,7 +48,7 @@ public class CircularListWithIteratorsImpl implements CircularListWithIterators 
         }
     }
 
-    public class BackwardIterator implements Iterator<Integer>{
+    private class BackwardIterator implements Iterator<Integer>{
         private int index = circularList.size();
         @Override
         public boolean hasNext() {
