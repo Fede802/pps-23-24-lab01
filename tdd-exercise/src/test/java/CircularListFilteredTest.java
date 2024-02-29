@@ -31,7 +31,7 @@ public class CircularListFilteredTest extends CircularListTest{
     @BeforeEach
     void beforeEach(){
         this.circularList = new CircularListFilteredImpl();
-        super.circularList = this.circularList;
+        this.setCircularList(this.circularList);
     }
 
     @Test

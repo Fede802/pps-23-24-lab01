@@ -15,7 +15,7 @@ public class CircularListTest {
     private final static int GENERIC_ITEM = 1;
     private final static int LAST_ITEM = 2;
 
-    protected CircularList circularList;
+    private CircularList circularList;
 
     protected void setCircularList(CircularListFiltered circularList) {
         this.circularList = circularList;
