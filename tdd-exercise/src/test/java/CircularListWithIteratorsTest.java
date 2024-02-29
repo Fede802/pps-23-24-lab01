@@ -18,88 +18,87 @@ public class CircularListWithIteratorsTest {
 
     private CircularListWithIterators circularList;
 
-    private int addItems(){
-        int itemsAdded = 3;
+    private int addElements(){
+        int numberOfElementsAdded = 3;
         circularList.add(FIRST_ITEM);
         circularList.add(GENERIC_ITEM);
         circularList.add(LAST_ITEM);
-        return itemsAdded;
+        return numberOfElementsAdded;
     }
 
     @BeforeEach
     void beforeEach(){
-        circularList = new CircularListWithIteratorsImpl();
+        this.circularList = new CircularListWithIteratorsImpl();
     }
     @Test
     void isInitiallyEmpty(){
-        assertTrue(circularList.isEmpty());
+        assertTrue(this.circularList.isEmpty());
     }
 
     @Test
     void addItem(){
-        circularList.add(FIRST_ITEM);
-        assertFalse(circularList.isEmpty());
+        this.circularList.add(FIRST_ITEM);
+        assertFalse(this.circularList.isEmpty());
     }
 
     @Test
     void addMultipleItems(){
-        int itemsAdded = addItems();
-        assertEquals(itemsAdded,circularList.size());
+        int numberOfElementsAdded = this.addElements();
+        assertEquals(numberOfElementsAdded,this.circularList.size());
     }
 
     @Test
     void testForwardIterator(){
-        int itemsAdded = addItems();
-
-        Iterator<Integer> iterator = this.circularList.forwardIterator();
-        for (int i = 0; i < itemsAdded-1; i++) {
-            iterator.next();
+        int numberOfElementsAdded = this.addElements();
+        Iterator<Integer> forwardIterator = this.circularList.forwardIterator();
+        for (int i = 1; i < numberOfElementsAdded; i++) {
+            forwardIterator.next();
         }
-        assertEquals(LAST_ITEM,iterator.next());
+        assertEquals(LAST_ITEM,forwardIterator.next());
     }
 
     @Test
     void testForwardCyclicIterator(){
-        int itemsAdded = addItems();
+        int numberOfElementsAdded = this.addElements();
 
-        Iterator<Integer> iterator = this.circularList.forwardIterator();
-        for (int i = 0; i < itemsAdded; i++) {
-            iterator.next();
+        Iterator<Integer> forwardIterator = this.circularList.forwardIterator();
+        for (int i = 0; i < numberOfElementsAdded; i++) {
+            forwardIterator.next();
         }
-        assertEquals(FIRST_ITEM,iterator.next());
+        assertEquals(FIRST_ITEM,forwardIterator.next());
     }
 
     @Test
     void testForwardCyclicIteratorWithEmptyList(){
-        Iterator<Integer> iterator = this.circularList.forwardIterator();
-        assertFalse(iterator.hasNext());
+        Iterator<Integer> forwardIterator = this.circularList.forwardIterator();
+        assertFalse(forwardIterator.hasNext());
     }
 
     @Test
     void testBackwardIterator(){
-        int itemsAdded = addItems();
+        int numberOfElementsAdded = this.addElements();
 
-        Iterator<Integer> iterator = this.circularList.backwardIterator();
-        for (int i = 0; i < itemsAdded-1; i++) {
-            iterator.next();
+        Iterator<Integer> backwardIterator = this.circularList.backwardIterator();
+        for (int i = 1; i < numberOfElementsAdded; i++) {
+            backwardIterator.next();
         }
-        assertEquals(FIRST_ITEM,iterator.next());
+        assertEquals(FIRST_ITEM,backwardIterator.next());
     }
 
     @Test
     void testBackwardCyclicIterator(){
-        int itemsAdded = addItems();
+        int numberOfElementsAdded = this.addElements();
 
-        Iterator<Integer> iterator = this.circularList.backwardIterator();
-        for (int i = 0; i < itemsAdded; i++) {
-            iterator.next();
+        Iterator<Integer> backwardIterator = this.circularList.backwardIterator();
+        for (int i = 0; i < numberOfElementsAdded; i++) {
+            backwardIterator.next();
         }
-        assertEquals(LAST_ITEM,iterator.next());
+        assertEquals(LAST_ITEM,backwardIterator.next());
     }
 
     @Test
     void testBackwardCyclicIteratorWithEmptyList(){
-        Iterator<Integer> iterator = this.circularList.backwardIterator();
-        assertFalse(iterator.hasNext());
+        Iterator<Integer> backwardIterator = this.circularList.backwardIterator();
+        assertFalse(backwardIterator.hasNext());
     }
 }

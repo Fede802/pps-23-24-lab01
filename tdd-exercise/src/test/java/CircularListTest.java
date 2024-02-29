@@ -16,85 +16,82 @@ public class CircularListTest {
 
     private CircularList circularList;
 
-    private int addItems(){
-        int itemsAdded = 3;
-        circularList.add(FIRST_ITEM);
-        circularList.add(GENERIC_ITEM);
-        circularList.add(LAST_ITEM);
-        return itemsAdded;
+    private int addElements(){
+        int numberOfElementsAdded = 3;
+        this.circularList.add(FIRST_ITEM);
+        this.circularList.add(GENERIC_ITEM);
+        this.circularList.add(LAST_ITEM);
+        return numberOfElementsAdded;
     }
 
     @BeforeEach
     void beforeEach(){
-        circularList = new CircularListImpl();
+        this.circularList = new CircularListImpl();
     }
     @Test
     void isInitiallyEmpty(){
-        assertTrue(circularList.isEmpty());
+        assertTrue(this.circularList.isEmpty());
     }
-
     @Test
-    void addItem(){
-        circularList.add(FIRST_ITEM);
-        assertFalse(circularList.isEmpty());
+    void addElement(){
+        this.circularList.add(FIRST_ITEM);
+        assertFalse(this.circularList.isEmpty());
     }
-
     @Test
-    void addMultipleItems(){
-        int itemsAdded = addItems();
-        assertEquals(itemsAdded,circularList.size());
+    void addMultipleElements(){
+        int numberOfElementsAdded = this.addElements();
+        assertEquals(numberOfElementsAdded,this.circularList.size());
     }
-
     @Test
     void forwardIteration(){
-        int itemsAdded = addItems();
-        for (int i = 0; i < itemsAdded-1; i++) {
-            circularList.next();
+        int numberOfElementsAdded = this.addElements();
+        for (int i = 1; i < numberOfElementsAdded; i++) {
+            this.circularList.next();
         }
-        assertEquals(LAST_ITEM,circularList.next().orElse(GENERIC_ITEM));
+        assertEquals(LAST_ITEM,this.circularList.next().orElse(GENERIC_ITEM));
     }
     @Test
     void forwardCyclicIteration(){
-        int itemsAdded = addItems();
-        for (int i = 0; i < itemsAdded; i++) {
-            circularList.next();
+        int numberOfElementsAdded = this.addElements();
+        for (int i = 0; i < numberOfElementsAdded; i++) {
+            this.circularList.next();
         }
-        assertEquals(FIRST_ITEM,circularList.next().orElse(GENERIC_ITEM));
+        assertEquals(FIRST_ITEM,this.circularList.next().orElse(GENERIC_ITEM));
     }
 
     @Test
     void forwardIterationWithEmptyList(){
-        assertFalse(circularList.next().isPresent());
+        assertFalse(this.circularList.next().isPresent());
     }
 
     @Test
     void backwardIteration(){
-        int itemsAdded = addItems();
-        for (int i = 0; i < itemsAdded-1; i++) {
-            circularList.previous();
+        int numberOfElementsAdded = this.addElements();
+        for (int i = 1; i < numberOfElementsAdded; i++) {
+            this.circularList.previous();
         }
-        assertEquals(FIRST_ITEM,circularList.previous().orElse(GENERIC_ITEM));
+        assertEquals(FIRST_ITEM,this.circularList.previous().orElse(GENERIC_ITEM));
     }
     @Test
     void backwardCyclicIteration(){
-        int itemsAdded = addItems();
-        for (int i = 0; i < itemsAdded; i++) {
-            circularList.previous();
+        int numberOfElementsAdded = this.addElements();
+        for (int i = 0; i < numberOfElementsAdded; i++) {
+            this.circularList.previous();
         }
-        assertEquals(LAST_ITEM,circularList.previous().orElse(GENERIC_ITEM));
+        assertEquals(LAST_ITEM,this.circularList.previous().orElse(GENERIC_ITEM));
     }
 
     @Test
     void backwardIterationWithEmptyList(){
-        assertFalse(circularList.previous().isPresent());
+        assertFalse(this.circularList.previous().isPresent());
     }
 
     @Test
     void reset(){
-        addItems();
-        circularList.next();
-        circularList.reset();
-        assertEquals(FIRST_ITEM,circularList.next().orElse(GENERIC_ITEM));
+        this.addElements();
+        this.circularList.next();
+        this.circularList.reset();
+        assertEquals(FIRST_ITEM,this.circularList.next().orElse(GENERIC_ITEM));
     }
 
 }

@@ -41,7 +41,7 @@ public class CircularListWithIteratorsImpl implements CircularListWithIterators 
 
         @Override
         public Integer next() {
-            this.index = hasNext() ? this.index+1 : 0;
+            this.index = this.hasNext() ? this.index+1 : 0;
             return circularList.get(index);
         }
     }
@@ -55,7 +55,7 @@ public class CircularListWithIteratorsImpl implements CircularListWithIterators 
 
         @Override
         public Integer next() {
-            this.index = hasNext() ? this.index-1 : circularList.size()-1;
+            this.index = this.hasNext() ? this.index-1 : circularList.size()-1;
             return circularList.get(this.index);
         }
     }

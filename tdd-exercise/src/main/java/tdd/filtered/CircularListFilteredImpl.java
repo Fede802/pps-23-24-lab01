@@ -2,11 +2,9 @@ package tdd.filtered;
 
 import tdd.CircularList;
 import tdd.CircularListImpl;
-import tdd.filtered.CircularListFiltered;
 
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 public class CircularListFilteredImpl implements CircularListFiltered {
 
@@ -14,20 +12,17 @@ public class CircularListFilteredImpl implements CircularListFiltered {
 
     @Override
     public void add(int element) {
-        circularList.add(element);
+        this.circularList.add(element);
     }
 
     @Override
     public Optional<Integer> filteredNext(Predicate<Integer> filter) {
-        for (int elementSeen = 0; elementSeen < circularList.size(); elementSeen++) {
-            Optional<Integer> nextElement = circularList.next();
+        for (int elementSeen = 0; elementSeen < this.circularList.size(); elementSeen++) {
+            Optional<Integer> nextElement = this.circularList.next();
             if(nextElement.isPresent() && filter.test(nextElement.get())){
                 return nextElement;
             }
         }
         return Optional.empty();
-//        return Stream.generate(circularList::next).limit(circularList.size())
-//                .filter(Optional::isPresent).map(Optional::get).filter(filter).findFirst();
-
     }
 }
