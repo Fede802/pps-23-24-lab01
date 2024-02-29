@@ -1,14 +1,10 @@
 package tdd.filtered;
+import tdd.CircularList;
+
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public interface CircularListFiltered {
-
-    /**
-     * Adds an element to the list, namely, after the last inserted one.
-     * @param element the element to be added to the list
-     */
-    void add(final int element);
+public interface CircularListFiltered extends CircularList {
 
     /**
      * Provides the next element of the list, matching the provided filter

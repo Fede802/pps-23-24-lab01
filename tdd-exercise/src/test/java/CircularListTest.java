@@ -2,6 +2,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import tdd.CircularList;
 import tdd.CircularListImpl;
+import tdd.filtered.CircularListFiltered;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,6 +17,9 @@ public class CircularListTest {
 
     private CircularList circularList;
 
+    protected void setCircularList(CircularListFiltered circularList) {
+        this.circularList = circularList;
+    }
     private int addElements(){
         int numberOfElementsAdded = 3;
         this.circularList.add(FIRST_ITEM);
@@ -93,5 +97,6 @@ public class CircularListTest {
         this.circularList.reset();
         assertEquals(FIRST_ITEM,this.circularList.next().orElse(GENERIC_ITEM));
     }
+
 
 }

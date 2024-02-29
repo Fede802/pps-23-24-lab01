@@ -6,7 +6,7 @@ import tdd.filtered.CircularListFilteredImpl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class CircularListFilteredTest {
+public class CircularListFilteredTest extends CircularListTest{
 
     private final static int FIRST_EVEN_ITEM = 0;
     private final static int FIRST_ODD_ITEM = 1;
@@ -31,6 +31,7 @@ public class CircularListFilteredTest {
     @BeforeEach
     void beforeEach(){
         this.circularList = new CircularListFilteredImpl();
+        this.setCircularList(this.circularList);
     }
 
     @Test
