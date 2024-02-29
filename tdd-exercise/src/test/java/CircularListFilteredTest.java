@@ -25,6 +25,11 @@ public class CircularListFilteredTest {
     private boolean evenFilter(int element){
         return element%2 == 0;
     }
+
+    private boolean identityFilter(int element){
+        return true;
+    }
+
     @Test
     void evenFilter(){
         circularList = new CircularListFilteredImpl();
@@ -33,7 +38,24 @@ public class CircularListFilteredTest {
         assertEquals(SECOND_EVEN_ITEM,circularList.filteredNext(this::evenFilter).orElse(FIRST_ODD_ITEM));
     }
 
-    
+    @Test
+    void evenCyclicFilter(){
+        circularList = new CircularListFilteredImpl();
+        int itemAdded = addItems();
+        for (int i = 0; i < itemAdded; i++) {
+            System.out.println(circularList.filteredNext(this::identityFilter).get());
+
+        }
+        assertEquals(FIRST_EVEN_ITEM,circularList.filteredNext(this::evenFilter).orElse(FIRST_ODD_ITEM));
+    }
+
+    @Test
+    void evenFilterWithEmptyList(){
+        circularList = new CircularListFilteredImpl();
+        assertFalse(circularList.filteredNext(this::evenFilter).isPresent());
+    }
+
+
 
 
 }
