@@ -12,7 +12,7 @@ public class CircularListFilteredTest extends CircularListTest{
     private final static int FIRST_ODD_ITEM = 1;
     private final static int SECOND_EVEN_ITEM = 2;
 
-    CircularListFiltered circularList;
+    private CircularListFiltered circularList;
     private int addElements(){
         int numberOfElementsAdded = 3;
         circularList.add(FIRST_EVEN_ITEM);
@@ -31,7 +31,7 @@ public class CircularListFilteredTest extends CircularListTest{
     @BeforeEach
     void beforeEach(){
         this.circularList = new CircularListFilteredImpl();
-        this.setCircularList(this.circularList);
+        super.circularList = this.circularList;
     }
 
     @Test
