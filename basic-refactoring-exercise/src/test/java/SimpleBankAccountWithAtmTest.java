@@ -1,6 +1,5 @@
 import example.model.AccountHolder;
 import example.model.BankAccount;
-import example.model.BankAccountWithAtm;
 import example.model.SimpleBankAccountWithAtm;
 
 import org.junit.jupiter.api.*;
@@ -13,7 +12,7 @@ class SimpleBankAccountWithAtmTest{
 
     private final static int INITIAL_AMOUNT = 100;
     private final static int FEE = 1;
-    private BankAccountWithAtm bankAccount;
+    private BankAccount bankAccount;
 
     @BeforeEach
     void beforeEach(){
