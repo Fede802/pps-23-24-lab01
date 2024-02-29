@@ -85,4 +85,15 @@ public class CircularListWithIteratorsTest {
         }
         assertEquals(FIRST_ITEM,iterator.next());
     }
+
+    @Test
+    void testBackwardCyclicIterator(){
+        int itemsAdded = addItems();
+
+        Iterator<Integer> iterator = this.circularList.backwardIterator();
+        for (int i = 0; i < itemsAdded; i++) {
+            iterator.next();
+        }
+        assertEquals(LAST_ITEM,iterator.next());
+    }
 }

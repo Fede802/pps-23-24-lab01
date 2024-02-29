@@ -1,9 +1,6 @@
 package tdd.iterator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CircularListWithIteratorsImpl implements CircularListWithIterators {
@@ -32,9 +29,7 @@ public class CircularListWithIteratorsImpl implements CircularListWithIterators 
 
     @Override
     public Iterator<Integer> backwardIterator() {
-        List<Integer> reverseCircularList = new ArrayList<>(circularList.stream().toList());
-        Collections.reverse(reverseCircularList);
-        return reverseCircularList.iterator();
+        return new BackwardIterator();
     }
 
     public class ForwardIterator implements Iterator<Integer>{
@@ -48,6 +43,20 @@ public class CircularListWithIteratorsImpl implements CircularListWithIterators 
         public Integer next() {
             this.index = hasNext() ? this.index+1 : 0;
             return circularList.get(index);
+        }
+    }
+
+    public class BackwardIterator implements Iterator<Integer>{
+        private int index = circularList.size();
+        @Override
+        public boolean hasNext() {
+            return this.index-1 >= 0;
+        }
+
+        @Override
+        public Integer next() {
+            this.index = hasNext() ? this.index-1 : circularList.size()-1;
+            return circularList.get(this.index);
         }
     }
 
